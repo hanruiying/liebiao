@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jQuery实现下拉列表左右选择</title>
+    <script src="js/jquery.js"></script>
+    <style>
+        div{
+          display:inline-block;
+        }
+        select{
+            font:700 16px/20px "SimSun";
+        }
+        input,select{
+            outline-style:none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="left">
+            <select multiple="multiple" style="width:200px;height:200px">
+                <option>iphone8</option>
+                <option>华为p9</option>
+                <option>oppoR10</option>
+                <option>魅族</option>
+                <option>aaaaa</option>
+                <option>bbbbb</option>
+                <option>ccccc</option>
+                <option>dddddd</option>
+            </select>
+        </div>
+        <div>
+            <input id="btn-one-left" type="button" value=">>"></br>
+            <input id="btn-all-left" type="button" value=">>>">
+        </div>
+        <div>
+            <input id="btn-one-right" type="button" value="<<"></br>
+            <input id="btn-all-right" type="button" value="<<<">
+        </div>
+        <div id="right">
+            <select  multiple="multiple" style="width:200px;height:200px">
+                <option>小米</option>
+            </select>
+        </div>
+    </div>
+<script>
+    $(function(){
+        //单击事件
+        $("#btn-one-left").click(function(){
+            $("#left select option:selected").appendTo($("#right select"));
+        });
+        $("#btn-one-right").click(function(){
+            $("#right select option:selected").appendTo($("#left select"));
+        });
+        //全部选择事件
+        $("#btn-all-left").click(function(){
+            $("#left select option").appendTo($("#right select"));
+        });
+        $("#btn-all-right").click(function(){
+            $("#right select option").appendTo($("#left select"));
+        });
+        //鼠标双击事件
+        $("#left select").dblclick(function(){
+            $("option:selected").appendTo($("#right select"));
+        });
+        $("#right select").dblclick(function(){
+            $("option:selected").appendTo($("#left select"));
+        })
+    })
+</script>
+</body>
+</html>
